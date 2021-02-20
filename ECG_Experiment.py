@@ -19,6 +19,7 @@ from sklearn.model_selection import train_test_split
 from tensorflow.keras import layers, losses
 from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.models import Model
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report, confusion_matrix
 
 # Download the dataset
 dataframe = pd.read_csv('http://storage.googleapis.com/download.tensorflow.org/data/ecg.csv', header=None)
@@ -92,13 +93,15 @@ params = dict(learning_rate=[0.1,0.01,0.001],epochs=[10,20,30],batch_size=[8,32,
 model = KerasClassifier(build_fn=create_model)
 random_search = RandomizedSearchCV(model,params,cv=2)
 
-# fit(X,Y) taks too long. Only show result here
-#random_search_result = random_search.fit(train_data,train_labels)
-#print(random_search.best_score_)
-#print(random_search.best_params_)
 """
-best_score0.9844922423362732
-best_params='nn': 64, 'nl': 4, 'learning_rate': 0.001, 'epochs': 30, 'batch_size': 64, 'activation': 'tanh'}
+# fit(X,Y) taks too long. Only show result here
+random_search_result = random_search.fit(train_data,train_labels)
+print(random_search.best_score_)
+print(random_search.best_params_)
+
+# below is result from random_search.fit()
+#best_score0.9844922423362732
+#best_params='nn': 64, 'nl': 4, 'learning_rate': 0.001, 'epochs': 30, 'batch_size': 64, 'activation': 'tanh'}
 """
 
 # build MLP architecture
@@ -123,8 +126,6 @@ plot_loss(hist_mlp.history['loss'], hist_mlp.history['val_loss'])
 MLP.evaluate(test_data,test_labels)
 
 # predict and mark
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report, confusion_matrix
-
 y_pred_mlp=MLP.predict_classes(test_data)
 print(f1_score(test_labels, y_pred_mlp, average="macro"))
 print(precision_score(test_labels, y_pred_mlp, average="macro"))
@@ -170,8 +171,6 @@ plot_loss(hist_cnn.history['loss'], hist_cnn.history['val_loss'])
 CNN.evaluate(test_data_cnn,test_labels)
 
 # predict and mark
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report, confusion_matrix
-
 y_pred_cnn=CNN.predict_classes(test_data_cnn)
 print(f1_score(test_labels, y_pred_cnn, average="macro"))
 print(precision_score(test_labels, y_pred_cnn, average="macro"))
@@ -209,8 +208,6 @@ plot_loss(hist_lstm.history['loss'], hist_lstm.history['val_loss'])
 Lstm.evaluate(test_data_lstm,test_labels)
 
 # predict and mark
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report, confusion_matrix
-
 y_pred_lstm=Lstm.predict_classes(test_data_lstm)
 print(f1_score(test_labels, y_pred_lstm, average="macro"))
 print(precision_score(test_labels, y_pred_lstm, average="macro"))

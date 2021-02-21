@@ -8,6 +8,8 @@ Original file is located at
 
 """
 
+"""### Download and import the dataset """
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -20,7 +22,7 @@ from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.models import Model
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report, confusion_matrix
 
-"""### Download and import the dataset """
+
 
 dataframe = pd.read_csv('http://storage.googleapis.com/download.tensorflow.org/data/ecg.csv', header=None)
 raw_data = dataframe.values

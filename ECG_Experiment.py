@@ -20,7 +20,8 @@ from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras.models import Model
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report, confusion_matrix
 
-# Download and import the dataset
+"""### Download and import the dataset """
+
 dataframe = pd.read_csv('http://storage.googleapis.com/download.tensorflow.org/data/ecg.csv', header=None)
 raw_data = dataframe.values
 dataframe.head()
@@ -130,7 +131,7 @@ print(f1_score(test_labels, y_pred_mlp, average="macro"))
 print(precision_score(test_labels, y_pred_mlp, average="macro"))
 print(recall_score(test_labels, y_pred_mlp, average="macro"))
 
-"""###Use CNN method to model"""
+"""### Use CNN method to model"""
 
 # Conv1D
 
@@ -213,7 +214,8 @@ print(precision_score(test_labels, y_pred_lstm, average="macro"))
 print(recall_score(test_labels, y_pred_lstm, average="macro"))
 
 
-# Plot val_loss and vol_acc plot
+"""### Plot val_loss and vol_acc plot"""
+
 plt.figure()
 plt.plot(hist_mlp.history['val_loss'])
 plt.plot(hist_cnn.history['val_loss'])

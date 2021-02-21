@@ -135,7 +135,7 @@ print(recall_score(test_labels, y_pred_mlp, average="macro"))
 
 # Conv1D
 
-from keras.layers import Conv1D,MaxPooling1D
+from keras.layers import Conv1D,MaxPooling1D,Dropout,Flatten
 
 # transform into suitable shape
 train_data_cnn = train_data.reshape(-1, 140, 1)
@@ -183,8 +183,8 @@ from keras.preprocessing import sequence, text
 
 
 # Transform into suitable shape
-train_data_lstm = train_data.reshape((train_data_0.shape[0], train_data_0.shape[1], 1))
-test_data_lstm = test_data.reshape((test_data_0.shape[0], test_data_0.shape[1], 1))
+train_data_lstm = train_data.reshape((train_data.shape[0], train_data.shape[1], 1))
+test_data_lstm = test_data.reshape((test_data.shape[0], test_data.shape[1], 1))
 
 # Build LSTM architecture
 opt = Adam(lr = 0.001)

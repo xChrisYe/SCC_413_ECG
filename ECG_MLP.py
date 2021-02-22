@@ -139,18 +139,24 @@ print(recall_score(test_labels, y_pred_mlp, average="macro"))
 
 plt.figure()
 plt.plot(hist_mlp.history['val_loss'])
-
+#plt.plot(hist_cnn.history['val_loss'])
+#plt.plot(hist_lstm.history['val_loss'])
 plt.title('Model val_loss')
 plt.ylabel('val_loss')
 plt.xlabel('Epoch')
 plt.legend(['mlp'], loc='upper right')
+#plt.legend(['mlp', 'cnn','lstm'], loc='upper right')
+
 plt.show()
 
 plt.figure()
 plt.plot(hist_mlp.history['val_accuracy'])
-
+#plt.plot(hist_cnn.history['val_accuracy'])
+#plt.plot(hist_lstm.history['val_accuracy'])
 plt.title('Model val_accuracy')
 plt.ylabel('val_accuracy')
 plt.xlabel('Epoch')
 plt.legend(['mlp'], loc='upper right')
+#plt.legend(['mlp', 'cnn','lstm'], loc='upper right')
+
 plt.show()

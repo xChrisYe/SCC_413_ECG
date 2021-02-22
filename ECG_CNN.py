@@ -81,10 +81,8 @@ test_data_cnn = test_data.reshape(-1, 140, 1)
 # Build CNN architecture
 CNN = Sequential()
 CNN.add(Conv1D(16, 10, activation='tanh', input_shape=(140,1)))
-CNN.add(Conv1D(16, 10, activation='tanh'))
 CNN.add(MaxPooling1D(3))
 CNN.add(Dropout(0.25))
-CNN.add(Conv1D(32, 10, activation='tanh'))
 CNN.add(Conv1D(32, 10, activation='tanh'))
 CNN.add(MaxPooling1D(3))
 CNN.add(Dropout(0.25))
@@ -118,21 +116,25 @@ print(recall_score(test_labels, y_pred_cnn, average="macro"))
 """### Plot val_loss and vol_acc plot"""
 
 plt.figure()
-
+#plt.plot(hist_mlp.history['val_loss'])
 plt.plot(hist_cnn.history['val_loss'])
+#plt.plot(hist_lstm.history['val_loss'])
 
 plt.title('Model val_loss')
 plt.ylabel('val_loss')
 plt.xlabel('Epoch')
 plt.legend([ 'cnn'], loc='upper right')
+#plt.legend(['mlp', 'cnn','lstm'], loc='upper right')
+
 plt.show()
 
 plt.figure()
-
+#plt.plot(hist_mlp.history['val_accuracy'])
 plt.plot(hist_cnn.history['val_accuracy'])
-
+#plt.plot(hist_lstm.history['val_accuracy'])
 plt.title('Model val_accuracy')
 plt.ylabel('val_accuracy')
 plt.xlabel('Epoch')
 plt.legend([ 'cnn'], loc='upper right')
+#plt.legend(['mlp', 'cnn','lstm'], loc='upper right')
 plt.show()

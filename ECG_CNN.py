@@ -66,7 +66,9 @@ monitor_val_loss = EarlyStopping(monitor='val_loss', patience=3)
 
 
 """### Use CNN method to model"""
-
+# Transfor tensfor to numpy
+train_data=np.array(train_data)
+test_data=np.array(test_data)
 # Conv1D
 
 from keras.layers import Conv1D,MaxPooling1D,Dropout,Flatten

@@ -70,6 +70,9 @@ monitor_val_loss = EarlyStopping(monitor='val_loss', patience=3)
 from keras.layers import LSTM, Embedding
 from keras.preprocessing import sequence, text
 
+# Transfor tensfor to numpy
+train_data=np.array(train_data)
+test_data=np.array(test_data)
 
 # Transform into suitable shape
 train_data_lstm = train_data.reshape((train_data.shape[0], train_data.shape[1], 1))
